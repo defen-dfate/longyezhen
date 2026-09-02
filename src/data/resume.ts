@@ -1,0 +1,289 @@
+/* ============================================================
+ * 简历数据 —— 来自「龙业镇-简历.pdf」，内容集中在此，按需修改即可
+ * 修改后无需改动任何页面组件
+ * ============================================================ */
+
+import anomalyVisaImg from '@/assets/anomaly-visa.png'
+
+export interface Profile {
+  name: string
+  title: string
+  avatarText: string
+  location: string
+  years: string
+  email: string
+  phone: string
+  github: string
+  blog: string
+  summary: string
+  highlights: Array<{ icon: string; title: string; desc: string }>
+}
+
+export interface SkillGroup {
+  name: string
+  desc: string
+  items: Array<{ name: string; level: number; note?: string }>
+}
+
+export interface Experience {
+  company: string
+  role: string
+  period: string
+  location: string
+  tags: string[]
+  duties: string[]
+  achievements: string[]
+}
+
+export interface Project {
+  name: string
+  subtitle: string
+  period: string
+  role: string
+  desc: string
+  stack: string[]
+  metrics: Array<{ k: string; v: string }>
+  link?: string
+  /** 配图（src/assets 内的图片导入引用），展示在描述文字下方 */
+  image?: string
+  /** 配图说明文字 */
+  imageCaption?: string
+}
+
+export interface Education {
+  school: string
+  major: string
+  degree: string
+  period: string
+  desc: string
+}
+
+export interface Certificate {
+  name: string
+  issuer: string
+  date: string
+}
+
+/* ---------------- 基本信息 ---------------- */
+export const profile: Profile = {
+  name: '龙业镇',
+  title: '测绘科学与技术硕士 · 遥感与 AI 方向',
+  avatarText: '龙',
+  location: '江西 · 南昌（东华理工大学）',
+  years: '硕士在读',
+  email: '13571931102@163.com',
+  phone: '13571931102',
+  github: '',
+  blog: '',
+  summary:
+    '测绘科学与技术（遥感与人工智能方向）硕士生，专注于遥感影像智能解译、工业异常检测与地震监测软件工程。' +
+    '具备从算法复现到服务上线的全链路工程能力：熟练使用 Python / PyTorch 进行模型研发，' +
+    '并能以 Vue3 + TypeScript + Vite 构建前端交互、以 Docker / Kubernetes / Nacos 完成云原生部署，' +
+    '曾在中国地震局地震综合协同软件系统中独立负责噪声频散提取与体波结构成像模块的工程化落地。',
+  highlights: [
+    { icon: 'globe', title: '遥感与 AI 算法', desc: '遥感影像解译、异常检测、论文复现与模型构建' },
+    { icon: 'layers', title: '地震监测软件工程', desc: '频散提取 / 体波成像模块的全链路工程化' },
+    { icon: 'settings', title: '云原生与部署', desc: 'Docker / K8s / Nacos / Harbor 标准化容器交付' },
+    { icon: 'tools', title: '全栈工程能力', desc: 'Vue3 + TS + Vite 前端与 FastAPI 后端服务' }
+  ]
+}
+
+/* ---------------- 专业技能 ---------------- */
+export const skillGroups: SkillGroup[] = [
+  {
+    name: '图像识别与分割',
+    desc: '专业主攻',
+    items: [
+      { name: '遥感影像解译', level: 85, note: '分类、变化检测、目标识别' },
+      { name: '异常检测 / 图像分割', level: 82, note: 'CBAM、噪声增强、分数融合策略' },
+      { name: '深度学习模型', level: 80, note: 'PyTorch / Transformer 复现与训练' },
+      { name: '小样本检测', level: 76, note: '知识蒸馏、多模态数据集构建' }
+    ]
+  },
+  {
+    name: '全栈',
+    desc: '一体化交付',
+    items: [
+      { name: 'Vue 3 / TS / Vite', level: 80, note: '组合式 API、组件化开发' },
+      { name: 'FastAPI 后端', level: 82, note: '算法服务封装与接口设计' },
+      { name: 'Pinia / Vue Router', level: 76, note: '状态共享与权限路由' },
+      { name: '前后端联调', level: 84, note: '从算法到服务的全链路工程化' }
+    ]
+  },
+  {
+    name: '前端',
+    desc: '交互与可视化',
+    items: [
+      { name: '地图交互模块', level: 80, note: '图层叠加、多边形框选、空间过滤' },
+      { name: 'ECharts / Canvas', level: 78, note: '时空数据渲染与可视化' },
+      { name: 'WebGIS 开发', level: 75, note: '自研 Canvas 渲染与交互' },
+      { name: 'Git 版本管理', level: 85, note: '分支模型、Code Review、CI 发布' }
+    ]
+  },
+  {
+    name: '后端',
+    desc: '算法与工程',
+    items: [
+      { name: 'Python', level: 90, note: '算法设计、模型构建' },
+      { name: 'PyTorch / TensorFlow', level: 82, note: '遥感算法开发与论文复现' },
+      { name: 'MATLAB 算法验证', level: 72, note: '与工程模块联调' },
+      { name: '容器化部署', level: 82, note: 'Docker / K8s 镜像交付' }
+    ]
+  },
+  {
+    name: 'AI',
+    desc: '智能算法',
+    items: [
+      { name: '大模型应用', level: 70, note: 'MiniMax 等模型调用与工程集成' },
+      { name: '论文复现', level: 80, note: '顶会方法实现与改进' },
+      { name: '自适应调参', level: 78, note: '三阶段自适应计算策略设计' },
+      { name: '数据工程', level: 75, note: '数据集构建与增强' }
+    ]
+  }
+]
+
+/** 能力雷达（用于雷达图） */
+export const radarData = {
+  indicators: [
+    { name: 'AI 算法', max: 100 },
+    { name: '前端工程', max: 100 },
+    { name: '云原生运维', max: 100 },
+    { name: '测绘 GIS', max: 100 },
+    { name: '工程化', max: 100 },
+    { name: '论文复现', max: 100 }
+  ],
+  values: [84, 78, 80, 78, 82, 78]
+}
+
+/* ---------------- 工作 / 科研经历 ---------------- */
+export const experiences: Experience[] = [
+  {
+    company: '航天宏图信息技术股份有限公司',
+    role: '软件工程师（实习）',
+    period: '2026.07 - 至今',
+    location: '北京',
+    tags: ['Vue3', 'Kubernetes', 'Docker', 'FastAPI', '地震软件'],
+    duties: [
+      '参与中国地震局地震综合协同软件系统开发，独立负责地震噪声频散提取模块从算法复现到服务上线的全链路工程化',
+      '基于 Vue3 + TS + Vite 开发体波结构成像地图交互模块，实现条件查询、图层叠加、多边形框选交互及空间过滤与渲染',
+      '在 K8s 集群中完成 Nacos / MySQL / PostgreSQL(PostGIS) 等组件部署，设计离线镜像交付方案，通过标签调度固定 Pod 服务节点',
+      '搭建 Harbor 私有镜像仓库，编写部署脚本实现服务一键拉起，输出部署全流程操作文档'
+    ],
+    achievements: [
+      '封装频散 / 体波成像算法为 FastAPI 服务，结合 Nacos 服务注册与 Nginx 静态产物托管，实现标准化容器部署',
+      '设计三阶段自适应计算策略替代人工经验调参，增强反演流程的自动化与可复现性，实现反演模型可视化输出',
+      '通过多进程并行将频散反演吞吐量显著提升，实现地震台阵数据的自动化处理与反演可视化'
+    ]
+  }
+]
+
+/* ---------------- 项目作品 ---------------- */
+export const projects: Project[] = [
+  {
+    name: '中国地震局地震综合协同软件系统',
+    subtitle: '核心研发 · 噪声频散提取与体波结构成像',
+    period: '2026.07 - 至今',
+    role: '软件工程师（实习）',
+    desc:
+      '面向地震监测业务的协同软件系统。独立负责地震噪声频散提取与体波结构成像两大模块，' +
+      '完成从算法复现、容器化部署到前端地图交互的全链路工程化，并设计自适应调参策略提升反演自动化水平。',
+    stack: ['Vue3', 'TS', 'Vite', 'Pinia', 'FastAPI', 'Docker', 'K8s', 'Nacos', 'PostGIS'],
+    metrics: [
+      { k: '主导模块', v: '2 个' },
+      { k: '算法服务', v: 'FastAPI' },
+      { k: '部署组件', v: '6+' },
+      { k: '反演吞吐', v: '显著提升' }
+    ]
+  },
+  {
+    name: '鄱阳湖堤坝险情检测',
+    subtitle: '国家自然科学基金 · 小样本多模态检测',
+    period: '2024 - 2026',
+    role: '核心参与',
+    desc:
+      '依托国家自然科学基金项目，聚焦鄱阳湖流域复杂环境下小样本堤防管涌险情检测。' +
+      '融合无人机多光谱与热红外影像构建多模态数据集，结合 Transformer 与知识蒸馏（ResNet-101 教师模型）实现险情精准识别与定位。',
+    stack: ['Transformer', '知识蒸馏', 'ResNet-101', '多模态数据集', '无人机影像'],
+    metrics: [
+      { k: '依托项目', v: '国家自科基金' },
+      { k: '险情类型', v: '管涌/渗漏/裂缝' },
+      { k: '模型结构', v: '双分支' },
+      { k: '蒸馏策略', v: 'ResNet-101' }
+    ]
+  },
+  {
+    name: '工业异常检测与定位方法研究',
+    subtitle: '硕士课题 · 论文《计算机科学》',
+    period: '2024 - 2026',
+    role: '独立完成',
+    desc:
+      '针对无监督工业异常检测精度低、定位受限与背景干扰问题，提出自适应高斯噪声生成增强伪异常样本、' +
+      '嵌入分组 CBAM 分割头强化定位感知、分层分数融合策略互补局部分割与全局语义特征，显著优化异常定位效果。',
+    stack: ['PyTorch', 'CBAM', '高斯噪声增强', '分数融合', '轻量网络'],
+    image: anomalyVisaImg,
+    imageCaption: 'VisA 数据集上与基线方法 GLASS 的可视化对比：上两行为输入图像与真值掩码，中间为基线定位结果（响应弥散），下两行为本文方法（边缘清晰、置信度集中）',
+    metrics: [
+      { k: '成果形式', v: '学术论文' },
+      { k: '发表期刊', v: '计算机科学' },
+      { k: '核心创新', v: '3 项' },
+      { k: '应用场景', v: '工业缺陷' }
+    ]
+  },
+  {
+    name: '图压 · 图像压缩助手',
+    subtitle: 'Chrome 扩展 · 指定目标大小批量压缩',
+    period: '2026.09',
+    role: '独立开发',
+    desc:
+      '浏览器插件形式的本地图片压缩工具，可精确指定压缩后体积（KB/MB）。' +
+      '核心算法为编码质量二分查找 + 画布等比降采样，内置自实现 ZIP 打包器，全程本地处理不上传。',
+    stack: ['Chrome MV3', 'Canvas', 'TypeScript', 'ZIP(store)'],
+    metrics: [
+      { k: '压缩轮次', v: '≤ 6 轮' },
+      { k: '质量精度', v: '0.02' },
+      { k: '依赖数量', v: '0' },
+      { k: '支持格式', v: 'JPG/PNG/WebP' }
+    ]
+  },
+  {
+    name: 'WorkBench 个人工作门户',
+    subtitle: '本站 · 自我介绍 + 实用工具 + 地震监测与分析 + 综合管理',
+    period: '2026.09',
+    role: '独立开发',
+    desc:
+      '基于 Vue 3 + Vite 构建的个人门户，集成自我介绍、实用工具、地震监测分析与综合管理四大板块，' +
+      '支持前端模拟认证与真实后端无缝切换，通过 GitHub Actions 自动部署到 Pages。',
+    stack: ['Vue 3', 'Vite', 'Pinia', 'ECharts', 'GitHub Actions'],
+    metrics: [
+      { k: '功能模块', v: '4 大类' },
+      { k: '页面总数', v: '22 个' },
+      { k: '地图引擎', v: '自研 Canvas' },
+      { k: '部署方式', v: 'CI 自动发布' }
+    ]
+  }
+]
+
+/* ---------------- 教育背景 ---------------- */
+export const education: Education[] = [
+  {
+    school: '东华理工大学',
+    major: '测绘科学与技术（遥感与 AI 方向）',
+    degree: '硕士',
+    period: '2024.09 - 2027.06（预计）',
+    desc: '研究方向：图像检测、图像分割、遥感算法。主修机器学习与人工智能、GIS 软件工程、测绘数据处理、Python、WebGIS。'
+  },
+  {
+    school: '西安科技大学',
+    major: '地理信息科学',
+    degree: '本科',
+    period: '2019.09 - 2023.06',
+    desc: '主修地理信息系统、遥感图像处理与分析、GIS 空间分析、GIS 二次开发、地图学、摄影测量；期间完成数字测图、遥感解译与 4D 产品生产等实训。'
+  }
+]
+
+export const certificates: Certificate[] = [
+  { name: '2025 年学业二等奖学金', issuer: '东华理工大学', date: '2025' },
+  { name: '第十一届统计建模大赛 校级三等奖', issuer: '赛事组委会', date: '2025' },
+  { name: '第八届“互联网+” 校级三等奖', issuer: '赛事组委会', date: '2024' },
+  { name: '国际大学创新创业大赛 铜奖', issuer: '赛事组委会', date: '2024' }
+]

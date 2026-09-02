@@ -1,0 +1,57 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    :stroke-width="width"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path v-for="(d, i) in paths" :key="i" :d="d" />
+    <circle v-for="(c, i) in circles" :key="'c' + i" :cx="c[0]" :cy="c[1]" :r="c[2]" />
+  </svg>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const props = withDefaults(
+  defineProps<{ name: string; size?: number | string; width?: number | string }>(),
+  { size: 16, width: 1.8 }
+)
+
+const ICONS: Record<string, { p?: string[]; c?: number[][] }> = {
+  user: { p: ['M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'], c: [[12, 7, 4]] },
+  tools: { p: ['M14.7 6.3a4 4 0 0 0 5 5l-9.6 9.6a2.1 2.1 0 0 1-3-3z', 'M6 6l1.5 1.5', 'M17 3l4 4-2.5 2.5-4-4z'] },
+  globe: { p: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z', 'M3 12h18', 'M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z'] },
+  gauge: { p: ['M12 21a9 9 0 1 0-9-9', 'M12 12l4.5-4.5', 'M3 12h3'] },
+  image: { p: ['M3 5h18v14H3z', 'M3 15l5-5 4 4 3-3 6 6'], c: [[8.5, 9, 1.5]] },
+  download: { p: ['M12 3v12', 'M7 11l5 5 5-5', 'M4 21h16'] },
+  upload: { p: ['M12 17V5', 'M7 9l5-5 5 5', 'M4 21h16'] },
+  check: { p: ['M20 6L9 17l-5-5'] },
+  alert: { p: ['M12 9v4', 'M12 17h.01', 'M10.3 3.9L2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z'] },
+  clock: { p: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z', 'M12 7v5l3 2'] },
+  chart: { p: ['M3 21h18', 'M7 17v-6', 'M12 17V7', 'M17 17v-9'] },
+  settings: { p: ['M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', 'M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.5 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 13.9H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.5l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z'] },
+  refresh: { p: ['M21 12a9 9 0 1 1-3-6.7', 'M21 3v6h-6'] },
+  logout: { p: ['M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4', 'M16 17l5-5-5-5', 'M21 12H9'] },
+  menu: { p: ['M3 6h18', 'M3 12h18', 'M3 18h18'] },
+  sun: { p: ['M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z', 'M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4'] },
+  moon: { p: ['M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'] },
+  layers: { p: ['M12 2l9 5-9 5-9-5 9-5z', 'M3 12l9 5 9-5', 'M3 17l9 5 9-5'] },
+  zap: { p: ['M13 2L3 14h8l-1 8 10-12h-8l1-8z'] },
+  list: { p: ['M8 6h13', 'M8 12h13', 'M8 18h13', 'M3 6h.01', 'M3 12h.01', 'M3 18h.01'] },
+  search: { p: ['M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z', 'M21 21l-4.3-4.3'] },
+  trash: { p: ['M3 6h18', 'M8 6V4h8v2', 'M19 6l-1 14H6L5 6', 'M10 11v6M14 11v6'] },
+  file: { p: ['M14 2H6v20h12V6z', 'M14 2v4h4'] },
+  chevron: { p: ['M9 6l6 6-6 6'] },
+  activity: { p: ['M22 12h-4l-3 9L9 3l-3 9H2'] }
+}
+
+const icon = computed(() => ICONS[props.name] || ICONS.file)
+const paths = computed(() => icon.value.p || [])
+const circles = computed(() => icon.value.c || [])
+</script>
