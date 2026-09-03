@@ -158,7 +158,7 @@ export const radarData = {
 /* ---------------- 工作 / 科研经历 ---------------- */
 export const experiences: Experience[] = [
   {
-    company: '航天宏图信息技术股份有限公司',
+    company: '航天宏图',
     role: '软件工程师（实习）',
     period: '2026.07 - 至今',
     location: '北京',
