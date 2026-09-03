@@ -88,7 +88,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import { experiences, profile, projects, skillGroups } from '@/data/resume'
 
 const stats = [
-  { k: '工作经验', v: profile.years, d: '地理信息 + Web 开发', accent: true },
+  { k: '工作经验', v: ' 硕士在读 ', d: '地理信息 + Web 开发', accent: true },
   { k: '主导项目', v: projects.length + ' 个', d: '含 1 个平台级项目' },
   { k: '技能方向', v: skillGroups.length + ' 类', d: '图像识别与分割 / 全栈 / 前端 / 后端 / AI' },
   { k: '实习经历', v: experiences.length + ' 段', d: '航天宏图软件工程实习' }
