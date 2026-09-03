@@ -285,6 +285,6 @@ export const education: Education[] = [
 export const certificates: Certificate[] = [
   { name: '2025 年学业二等奖学金', issuer: '东华理工大学', date: '2025' },
   { name: '第十一届统计建模大赛 校级三等奖', issuer: '赛事组委会', date: '2025' },
-  { name: '第八届“互联网+” 校级三等奖', issuer: '赛事组委会', date: '2024' },
-  { name: '国际大学创新创业大赛 铜奖', issuer: '赛事组委会', date: '2024' }
+  { name: '第八届“互联网+” 校级三等奖', issuer: '赛事组委会', date: '2025' },
+  { name: '国际大学创新创业大赛 铜奖', issuer: '赛事组委会', date: '2025' }
 ]
