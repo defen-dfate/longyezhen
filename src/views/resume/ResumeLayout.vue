@@ -2,7 +2,6 @@
   <div class="page">
     <div class="page-hd">
       <h2>自我介绍</h2>
-      <p>共 5 个板块 · 内容集中在 <code>src/data/resume.ts</code>，改数据即可，无需动页面</p>
     </div>
     <ModuleTabs :items="tabs" class="mb" />
     <router-view />
