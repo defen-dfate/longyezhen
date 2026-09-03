@@ -70,7 +70,7 @@ export const profile: Profile = {
   title: '测绘科学与技术硕士 · 遥感与 AI 方向',
   avatarText: '龙',
   location: '江西 · 南昌（东华理工大学）',
-  years: '2027届硕士在读',
+  years: '硕士在读',
   email: '13571931102@163.com',
   phone: '13571931102',
   github: '',
@@ -182,7 +182,7 @@ export const projects: Project[] = [
   {
     name: '中国地震局地震综合协同软件系统',
     subtitle: '核心研发 · 噪声频散提取与体波结构成像',
-    period: '2026.07 - 至今',
+    period: '2026.07.1 - 至今',
     role: '软件工程师（实习）',
     desc:
       '面向地震监测业务的协同软件系统。独立负责地震噪声频散提取与体波结构成像两大模块，' +
